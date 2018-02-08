@@ -21,13 +21,14 @@ namespace myApp
         private static PrintModel BuildPrintModel(IEnumerable<PosUdpMessage> messageStore)
         {
             var result = new PrintModel();
-            var orderedMessages = messageStore.OrderBy(x => x.ReceiveTime);
+            var orderedMessages = messageStore.OrderBy(x => x.ReceiveTime).ToList();
             var lastData = orderedMessages.Last();
 
-            var itemCount = orderedMessages.Count();
+            var itemCount = orderedMessages.Count;
             if (itemCount > 2)
             {
-                var dataBeforeLast = orderedMessages.ElementAt(itemCount - 2);
+                int itemBeforeLastIndex = itemCount - 2;
+                var dataBeforeLast = orderedMessages[itemBeforeLastIndex];
                 result.TimeDiff = (lastData.ReceiveTime - dataBeforeLast.ReceiveTime).TotalMilliseconds / 1000;
             }
 
@@ -35,6 +36,7 @@ namespace myApp
             result.Time = lastData.ReceiveTime;
             result.Ip = lastData.PosUdpData.Meta.Sender.Address;
             result.DataSyncName = lastData.PosUdpData.Meta.Name;
+            result.Message = lastData.OriginalMessage;
 
             return result;
         }

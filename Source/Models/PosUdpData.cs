@@ -3,10 +3,6 @@ namespace myApp.Models
 {
     public class PosUdpData
     {
-        public PosUdpData()
-        {
-        }
-
         public Meta Meta
         {
             get;

@@ -3,8 +3,14 @@ namespace myApp.Models
 {
     public class PosUdpMessage
     {
-        public string Secret 
-        { 
+        public string Secret
+        {
+            get;
+            set;
+        }
+
+        public string OriginalMessage
+        {
             get;
             set;
         }

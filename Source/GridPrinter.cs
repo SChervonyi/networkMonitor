@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Text;
 using myApp.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -10,15 +11,18 @@ namespace myApp
     {
         public static void Print(ICollection<PrintModel> messageGrid)
         {
-            Console.Clear();
-            Console.WriteLine("HEAD|HEAD|HEAD|HEAD|HEAD");
+            var strBuilder = new StringBuilder();
+            strBuilder.AppendLine("DataSync name| IP | Time |Time diff (s)| Message Count | Last Message");
             foreach (var item in messageGrid)
             {
                 string line = $"{item.DataSyncName} | {item.Ip} |"
                     + $"{item.Time} | {item.TimeDiff} | {item.MessageCount}";
-                Console.WriteLine(line);
+                strBuilder.AppendLine(line);
             }
-            Console.WriteLine("HEAD|HEAD|HEAD|HEAD|HEAD");
+            strBuilder.AppendLine("__________________________");
+
+            Console.Clear();
+            Console.WriteLine(strBuilder.ToString());
         }
     }
 }

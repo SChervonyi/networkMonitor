@@ -23,7 +23,5 @@ namespace myApp
         }
 
         public List<PosUdpMessage> ReceivedMessages { get; set; } = new List<PosUdpMessage>();
-
-        public HashSet<string> IpReceivedDevices { get; set; } = new HashSet<string>();
     }
 }
