@@ -50,8 +50,8 @@ namespace myApp
             string message = Encoding.ASCII.GetString(bytes);
             if (UdpMessageParser.TryParse(message, out PosUdpMessage messageObj))
             {
-                DataStore.Instance.RecivedMessages.Add(messageObj);
-                var messageGrid = PrintModelBuilder.BuildPringModelGrid(DataStore.Instance.RecivedMessages);
+                DataStore.Instance.ReceivedMessages.Add(messageObj);
+                var messageGrid = PrintModelBuilder.BuildPrintModelGrid(DataStore.Instance.ReceivedMessages);
                 GridPrinter.Print(messageGrid);
             }
             StartListening();

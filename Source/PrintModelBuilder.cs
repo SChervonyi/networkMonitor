@@ -7,16 +7,14 @@ namespace myApp
 {
     public static class PrintModelBuilder
     {
-        public static List<PrintModel> BuildPringModelGrid(List<PosUdpMessage> messageStore)
+        public static List<PrintModel> BuildPrintModelGrid(List<PosUdpMessage> messageStore)
         {
             var result = new List<PrintModel>();
-
             var groupByIp = messageStore.GroupBy(x => x.PosUdpData.Meta.Sender.Address);
             foreach (var item in groupByIp)
             {
                 result.Add(BuildPrintModel(item));
             }
-
             return result;
         }
 

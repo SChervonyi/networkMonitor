@@ -19,6 +19,6 @@ namespace myApp.Models
         {
             get;
             set;
-        }
+        } = DateTime.Now;
     }
 }
