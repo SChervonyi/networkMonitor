@@ -3,10 +3,12 @@ using System.Net.Sockets;
 using System.Net;
 using System.Text;
 using System.Threading;
+using Newtonsoft.Json.Linq;
 
 
 namespace myApp
 {
+
     class UDPer
     {
         private const int PORT_NUMBER = 12000;
@@ -45,8 +47,6 @@ namespace myApp
             IPEndPoint ip = new IPEndPoint(IPAddress.Any, PORT_NUMBER);
             byte[] bytes = udp.EndReceive(ar, ref ip);
 
-            // if(ip.Address == udp.)
-
             string message = Encoding.ASCII.GetString(bytes);
             if (ip.Address.ToString() != IP)
             {
@@ -73,38 +73,39 @@ namespace myApp
 
             UDPer udp = new UDPer();
             udp.Start();
-
-            // ConsoleKeyInfo cki;
-            do
-            {
-                // udp.Send("CHES!CHES!CHES!CHES!CHES!CHES!CHES!CHES!CHES!CHES!CHES!");
-
-                udp.Send(GetDataSyncMessage());
-
-                // if (Console.KeyAvailable)
-                // {
-                //     cki = Console.ReadKey(true);
-                //     switch (cki.KeyChar)
-                //     {
-                //         case 's':
-                //             udp.Send(new Random().Next().ToString());
-                //             break;
-                //         case 'x':
-                //             udp.Stop();
-                //             return;
-                //     }
-                // }
-                Thread.Sleep(2000);
-            } while (true);
-        }
-
-        private static string GetDataSyncMessage()
-        {
-            string secret = "CHES";
-
-            return secret + "{\"meta\":{\"name\":\"XPOS:ches\",\"sender\":{\"port\":12000,\"address\":\"" + UDPer.IP + "\"},\"channel\":\"XPOS:5a705d34c0c41900120028a9\"},"
-                    + "\"payload\":{\"feed\":\"timeClock\",\"count\":1,\"updateTime\":1517661934809}}\"";
         }
     }
 }
 
+
+
+// // ConsoleKeyInfo cki;
+// do
+// {
+//     // udp.Send("CHES!CHES!CHES!CHES!CHES!CHES!CHES!CHES!CHES!CHES!CHES!");
+
+//     udp.Send(GetDataSyncMessage());
+
+//     // if (Console.KeyAvailable)
+//     // {
+//     //     cki = Console.ReadKey(true);
+//     //     switch (cki.KeyChar)
+//     //     {
+//     //         case 's':
+//     //             udp.Send(new Random().Next().ToString());
+//     //             break;
+//     //         case 'x':
+//     //             udp.Stop();
+//     //             return;
+//     //     }
+//     // }
+//     Thread.Sleep(2000);
+// } while (true);
+
+// private static string GetDataSyncMessage()
+// {
+//     string secret = "CHES";
+
+//     return secret + "{\"meta\":{\"name\":\"XPOS:ches\",\"sender\":{\"port\":12000,\"address\":\"" + UDPer.IP + "\"},\"channel\":\"XPOS:5a705d34c0c41900120028a9\"},"
+//             + "\"payload\":{\"feed\":\"timeClock\",\"count\":1,\"updateTime\":1517661934809}}\"";
+// }
