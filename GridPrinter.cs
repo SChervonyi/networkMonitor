@@ -1,16 +1,10 @@
-using Newtonsoft.Json.Linq;
-
+﻿using System;
 namespace myApp
 {
-    static class GridPrinter
+    public class GridPrinter
     {
-        public static void Print(string udpMessage)
+        public GridPrinter()
         {
-            int bracketIndex = udpMessage.IndexOf('{');
-            string secret = udpMessage.Substring(0, bracketIndex);
-            string body = udpMessage.Substring(bracketIndex);
-
-            var jObject = JObject.Parse(body);
         }
     }
 }
