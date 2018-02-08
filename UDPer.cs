@@ -51,7 +51,8 @@ namespace myApp
             if (UdpMessageParser.TryParse(message, out PosUdpMessage messageObj))
             {
                 DataStore.Instance.RecivedMessages.Add(messageObj);
-                //GridPrinter.Print();
+                var messageGrid = PrintModelBuilder.BuildPringModelGrid(DataStore.Instance.RecivedMessages);
+                GridPrinter.Print(messageGrid);
             }
             StartListening();
         }
@@ -65,5 +66,7 @@ namespace myApp
             client.Close();
             // Console.WriteLine("Sent: {0} ", message);
         }
+
+
     }
 }

@@ -14,5 +14,11 @@ namespace myApp.Models
             get;
             set;
         }
+
+        public DateTime ReceiveTime
+        {
+            get;
+            set;
+        }
     }
 }
