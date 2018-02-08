@@ -25,14 +25,14 @@ namespace myApp
             var lastData = orderedMessages.Last();
 
             var itemCount = orderedMessages.Count;
-            if (itemCount > 2)
+            if (itemCount >= 2)
             {
                 int itemBeforeLastIndex = itemCount - 2;
                 var dataBeforeLast = orderedMessages[itemBeforeLastIndex];
                 result.TimeDiff = (lastData.ReceiveTime - dataBeforeLast.ReceiveTime).TotalMilliseconds / 1000;
             }
 
-            result.MessageCount = itemCount + 1;
+            result.MessageCount = itemCount;
             result.Time = lastData.ReceiveTime;
             result.Ip = lastData.PosUdpData.Meta.Sender.Address;
             result.DataSyncName = lastData.PosUdpData.Meta.Name;

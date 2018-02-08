@@ -12,14 +12,14 @@ namespace myApp
         public static void Print(ICollection<PrintModel> messageGrid)
         {
             var strBuilder = new StringBuilder();
-            strBuilder.AppendLine("DataSync name| IP | Time |Time diff (s)| Message Count | Last Message");
+            strBuilder.AppendLine("DataSync name |      IP      |        Time        |Time diff (s)| Message Count |");
+            strBuilder.AppendLine("__________________________________________________________________________________");
             foreach (var item in messageGrid)
             {
-                string line = $"{item.DataSyncName} | {item.Ip} |"
-                    + $"{item.Time} | {item.TimeDiff} | {item.MessageCount}";
-                strBuilder.AppendLine(line);
+                strBuilder.Append($"{item.DataSyncName} | {item.Ip} |");
+                strBuilder.AppendLine($" {item.Time} |        {item.TimeDiff.ToString("G3")} |           {item.MessageCount} |");
             }
-            strBuilder.AppendLine("__________________________");
+            strBuilder.AppendLine("_______________________________________________________________________________________");
 
             Console.Clear();
             Console.WriteLine(strBuilder.ToString());

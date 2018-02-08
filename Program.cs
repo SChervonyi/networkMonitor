@@ -7,14 +7,15 @@ namespace myApp
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.Clear();
+            // Console.WriteLine("Hello World!");
 
             UDPer udp = new UDPer();
             udp.Start();
 
             do
             {
-                udp.Send(GetDataSyncMessage());
+                // udp.Send(GetDataSyncMessage());
                 Thread.Sleep(2000);
             }
             while (true);
