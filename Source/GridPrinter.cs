@@ -19,7 +19,7 @@ namespace PosNetworkMonitor
                 strBuilder.Append($"{item.DataSyncName} | {item.Ip} |");
                 strBuilder.AppendLine($" {item.Time} |        {item.TimeDiff.ToString("G3")} |           {item.MessageCount} |");
             }
-            strBuilder.AppendLine("_______________________________________________________________________________________");
+            strBuilder.AppendLine("___________________________________________________________________________________");
 
             Console.Clear();
             Console.WriteLine(strBuilder.ToString());

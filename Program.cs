@@ -21,7 +21,7 @@ namespace PosNetworkMonitor
 
             do
             {
-                udp.Send(GetDataSyncMessage(currentIp));
+                // udp.Send(GetDataSyncMessage(currentIp));
                 Thread.Sleep(2000);
             }
             while (true);
@@ -31,8 +31,8 @@ namespace PosNetworkMonitor
         {
             string secret = "CHES";
 
-            return secret + "{\"meta\":{\"name\":\"XPOS:ches\",\"sender\":{\"port\":12000,\"address\":\"" + currentIp.ToString() + "\"},\"channel\":\"XPOS:5a705d34c0c41900120028a9\"},"
-                    + "\"payload\":{\"feed\":\"timeClock\",\"count\":1,\"updateTime\":1517661934809}}\"";
+            return secret + "{\"meta\":{\"name\":\"CHES:f856\",\"sender\":{\"port\":12000,\"address\":\""+ currentIp.ToString() +"\"},\"channel\":\"XPOS:5a6efeffd282a5001feb665d\"}," +
+                "\"payload\":{\"feed\":\"orderState\",\"count\":7,\"updateTime\":1518170048779}}";
         }
     }
 }
