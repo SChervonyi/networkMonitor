@@ -1,7 +1,7 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2017
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "myApp", "myApp.csproj", "{D0230F5A-65DB-4B4B-91DA-8F767D91B121}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PosNetworkMonitor", "PosNetworkMonitor.csproj", "{D0230F5A-65DB-4B4B-91DA-8F767D91B121}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

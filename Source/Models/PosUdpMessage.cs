@@ -1,5 +1,5 @@
 ﻿using System;
-namespace myApp.Models
+namespace PosNetworkMonitor.Models
 {
     public class PosUdpMessage
     {

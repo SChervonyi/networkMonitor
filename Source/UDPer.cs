@@ -3,10 +3,10 @@ using System.Net.Sockets;
 using System.Net;
 using System.Text;
 using System.Threading;
-using myApp.Models;
+using PosNetworkMonitor.Models;
 using System.Collections.Generic;
 
-namespace myApp
+namespace PosNetworkMonitor
 {
     public class UDPer
     {

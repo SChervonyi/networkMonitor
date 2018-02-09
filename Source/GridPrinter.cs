@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using myApp.Models;
+using PosNetworkMonitor.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace myApp
+namespace PosNetworkMonitor
 {
     public static class GridPrinter
     {

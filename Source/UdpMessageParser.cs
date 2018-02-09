@@ -1,8 +1,8 @@
 ﻿using System;
-using myApp.Models;
+using PosNetworkMonitor.Models;
 using Newtonsoft.Json;
 
-namespace myApp
+namespace PosNetworkMonitor
 {
     public static class UdpMessageParser
     {
