@@ -5,9 +5,9 @@ using myApp.Models;
 
 namespace myApp
 {
-    public static class PrintModelBuilder
+    public class PrintModelBuilder
     {
-        public static List<PrintModel> BuildPrintModelGrid(List<PosUdpMessage> messageStore)
+        public List<PrintModel> BuildPrintModelGrid(List<PosUdpMessage> messageStore)
         {
             var result = new List<PrintModel>();
             var groupByIp = messageStore.GroupBy(x => x.PosUdpData.Meta.Sender.Address);
@@ -18,7 +18,7 @@ namespace myApp
             return result;
         }
 
-        private static PrintModel BuildPrintModel(IEnumerable<PosUdpMessage> messageStore)
+        private PrintModel BuildPrintModel(IEnumerable<PosUdpMessage> messageStore)
         {
             var result = new PrintModel();
             var orderedMessages = messageStore.OrderBy(x => x.ReceiveTime).ToList();

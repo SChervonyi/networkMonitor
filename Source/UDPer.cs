@@ -4,17 +4,32 @@ using System.Net;
 using System.Text;
 using System.Threading;
 using myApp.Models;
-
+using System.Collections.Generic;
 
 namespace myApp
 {
-    class UDPer
+    public class UDPer
     {
         private const int PORT_NUMBER = 12000;
 
-        public const string IP = "172.17.3.146";
+        private readonly IPAddress currentIp;
 
-        Thread t = null;
+        private readonly UdpClient udp = new UdpClient(PORT_NUMBER);
+
+        private readonly PrintModelBuilder printModelBuilder;
+
+        private readonly List<PosUdpMessage> receivedMessages = new List<PosUdpMessage>();
+
+        private IAsyncResult ar_ = null;
+
+        private Thread t = null;
+
+        public UDPer(IPAddress currentIp, PrintModelBuilder printModelBuilder)
+        {
+            this.currentIp = currentIp;
+            this.printModelBuilder = printModelBuilder;
+        }
+
         public void Start()
         {
             if (t != null)
@@ -24,6 +39,7 @@ namespace myApp
             Console.WriteLine("Started listening");
             StartListening();
         }
+
         public void Stop()
         {
             try
@@ -34,8 +50,15 @@ namespace myApp
             catch { /* don't care */ }
         }
 
-        private readonly UdpClient udp = new UdpClient(PORT_NUMBER);
-        IAsyncResult ar_ = null;
+        public void Send(string message)
+        {
+            UdpClient client = new UdpClient();
+            IPEndPoint ip = new IPEndPoint(currentIp, PORT_NUMBER);
+            byte[] bytes = Encoding.ASCII.GetBytes(message);
+            client.Send(bytes, bytes.Length, ip);
+            client.Close();
+            // Console.WriteLine("Sent: {0} ", message);
+        }
 
         private void StartListening()
         {
@@ -50,23 +73,11 @@ namespace myApp
             string message = Encoding.ASCII.GetString(bytes);
             if (UdpMessageParser.TryParse(message, out PosUdpMessage messageObj))
             {
-                DataStore.Instance.ReceivedMessages.Add(messageObj);
-                var messageGrid = PrintModelBuilder.BuildPrintModelGrid(DataStore.Instance.ReceivedMessages);
+                receivedMessages.Add(messageObj);
+                var messageGrid = printModelBuilder.BuildPrintModelGrid(receivedMessages);
                 GridPrinter.Print(messageGrid);
             }
             StartListening();
         }
-
-        public void Send(string message)
-        {
-            UdpClient client = new UdpClient();
-            IPEndPoint ip = new IPEndPoint(IPAddress.Parse(IP), PORT_NUMBER);
-            byte[] bytes = Encoding.ASCII.GetBytes(message);
-            client.Send(bytes, bytes.Length, ip);
-            client.Close();
-            // Console.WriteLine("Sent: {0} ", message);
-        }
-
-
     }
 }
