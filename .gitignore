@@ -2,3 +2,4 @@ bin/
 obj/
 myApp.userprefs
 .vs/
+packages/
